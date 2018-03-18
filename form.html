@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Hind+Madurai|Pragati+Narrow" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#fform').submit(function(){
+				$.ajax({
+					type: 'POST',
+					url: $(this).attr('action'),
+					data: $(this).serialize(),
+					success: function(data){
+						$('#output').show();
+						$('#output2').html(data);
+					}
+				})
+				return false;
+
+			});
+
+		})
+	</script>
+</head>
+<body>
+<h3>Simple Calculator Using Ajax</h3>
+
+
+<form id="fform" method="post" action="proses.php">
+
+
+
+	<label>Number 1 : <input id="ob1" type="number" name="ob1" placeholder="first number"></label><br>
+	<label>Number 2 : <input id="ob1" type="number" name="ob2" placeholder="second number"></label><br>
+	<select id="op" name="operator">
+    <option  value="+">+</option>
+    <option  value="-">-</option>
+    <option  value="*">*</option>
+    <option  value="/">/</option>
+    </select>
+    <input id="btn" type="submit" value="submit">
+</form>
+
+<div id="output" style="display: none">
+	<div id="output2"></div>
+	
+</div>
+
+</body>
+</html>
